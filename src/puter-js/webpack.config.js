@@ -16,6 +16,15 @@ export default {
         filename: 'puter.js',
         path: path.resolve(__dirname, 'dist'),
     },
+    performance: {
+        hints: false,
+        maxAssetSize: 512000,
+        maxEntrypointSize: 512000,
+    },
+    optimization: {
+        minimize: true,
+    },
+    parallelism: 16,
     plugins: [
         new webpack.DefinePlugin({
             'globalThis.PUTER_ORIGIN_ENV': JSON.stringify(process.env.PUTER_ORIGIN || 'https://puter.com'),

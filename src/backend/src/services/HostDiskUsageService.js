@@ -145,13 +145,13 @@ class HostDiskUsageService extends BaseService {
 
     // Get the free space on the mountpoint/drive in mac os
     get_disk_use_darwin (mountpoint) {
-        const disk_info = execSync(`df -P "${mountpoint}" | awk 'NR==2 {print $4}'`, { encoding: 'utf-8' }).trim().split(' ');
+        const disk_info = execSync(`df -P "${mountpoint}" | awk 'NR==2 {print $3}'`, { encoding: 'utf-8' }).trim().split(' ');
         return parseInt(disk_info) * 512;
     }
 
     // Get the free space on the mountpoint/drive in linux
     get_disk_use_linux (mountpoint) {
-        const disk_info = execSync(`df -P "${mountpoint}" | awk 'NR==2 {print $4}'`, { encoding: 'utf-8' }).trim().split(' ');
+        const disk_info = execSync(`df -P "${mountpoint}" | awk 'NR==2 {print $3}'`, { encoding: 'utf-8' }).trim().split(' ');
         return parseInt(disk_info) * 1024;
     }
 

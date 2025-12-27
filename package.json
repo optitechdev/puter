@@ -48,13 +48,13 @@
     "test:backend": "npm run build:ts; vitest run --config=src/backend/vitest.config.ts",
     "test:backend-coverage": "npm run build:ts; vitest run --config=src/backend/vitest.config.ts",
     "start=gui": "nodemon --exec \"node dev-server.js\" ",
-    "start": "node ./tools/run-selfhosted.js",
+    "start": "node --max-old-space-size=16384 --max-semi-space-size=64 ./tools/run-selfhosted.js",
     "prestart": "npm run build:ts",
-    "dev": "npm run build:ts && DEVCONSOLE=1 node ./tools/run-selfhosted.js",
+    "dev": "npm run build:ts && DEVCONSOLE=1 node --max-old-space-size=16384 ./tools/run-selfhosted.js",
     "build": "npx eslint --quiet -c eslint/mandatory.eslint.config.js src/backend/src extensions && npm run build:ts && cd src/gui && node ./build.js",
     "check-translations": "node tools/check-translations.js",
     "prepare": "husky",
-    "build:ts": "tsc -p tsconfig.build.json",
+    "build:ts": "tsc --build tsconfig.build.json --force",
     "gen": "./scripts/gen.sh"
   },
   "workspaces": [
